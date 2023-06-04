@@ -33,6 +33,7 @@ const createUser = async(req, res = response) => {
         const token = await generateJWT(user.id);
 
         res.json({
+            ok: true,
             user,
             token
         });
@@ -51,12 +52,44 @@ const login = async(req, res = response) => {
 
     const { email, password } = req.body;
 
-    res.json({
-        ok: true,
-        msg: 'Login',
-        email,
-        password
-    });
+    try {
+        
+        const userDB = await User.findOne({ email });
+
+        //Verify Email exists
+        if(!userDB){
+            return res.status(404).json({
+                ok: false,
+                msg: 'Email not found'
+            });
+        }
+
+        //Validate password
+        const validPassword = bcrypt.compareSync(password, userDB.password);
+
+        if(!validPassword){
+            return res.status(404).json({
+                ok: false,
+                msg: 'Incorrect password'
+            });
+        }
+
+        //Generate JWT
+        const token = await generateJWT(userDB.id);
+
+        res.json({
+            ok: true,
+            user: userDB,
+            token
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            ok: false,
+            msg: 'Contact admin'
+        });
+    }
 
 };
 
