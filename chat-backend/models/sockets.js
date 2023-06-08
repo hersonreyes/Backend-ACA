@@ -13,13 +13,17 @@ class Sockets {
         // On connection
         this.io.on('connection', ( socket ) => {
 
-            // Escuchar evento: mensaje-to-server
-            socket.on('mensaje-to-server', ( data ) => {
-                console.log( data );
-                
-                this.io.emit('mensaje-from-server', data );
-            });
-            
+            //Validate JWT
+
+            //Know which user is active
+
+            //Emit all connected users
+
+            //Socket join, uid
+
+            //Listen when a client sends message
+
+            //Disconnect
         
         });
     }
