@@ -13,6 +13,8 @@ class Sockets {
         // On connection
         this.io.on('connection', ( socket ) => {
 
+            console.log('Client connected');
+
             //Validate JWT
 
             //Know which user is active
@@ -24,7 +26,10 @@ class Sockets {
             //Listen when a client sends message
 
             //Disconnect
-        
+            socket.on('disconnect', () => {
+                console.log('Client disconnected');
+            });
+
         });
     }
 
