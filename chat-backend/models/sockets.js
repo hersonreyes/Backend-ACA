@@ -37,6 +37,7 @@ class Sockets {
             //Disconnect
             socket.on('disconnect', async() => {
                 await userDisconnected( uid );
+                this.io.emit('users-list', await getUsers());
             });
 
         });
