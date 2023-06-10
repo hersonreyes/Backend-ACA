@@ -23,6 +23,9 @@ class Sockets {
 
             await userConnected( uid );
 
+            //Join user to socket.io room
+            socket.join(uid);
+
             //Validate JWT
 
             //Know which user is active
@@ -33,6 +36,9 @@ class Sockets {
             //Socket join, uid
 
             //Listen when a client sends message
+            socket.on('personal-message', ( payload ) => {
+                console.log(payload);
+            });
 
             //Disconnect
             socket.on('disconnect', async() => {
