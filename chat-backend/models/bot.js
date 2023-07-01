@@ -20,7 +20,7 @@ const BotSchema = Schema({
     timestamps: true
 });
 
-MessageSchema.method('toJSON', function() {
+BotSchema.method('toJSON', function() {
     const { __v, ...object } = this.toObject();
     return object;
 });
