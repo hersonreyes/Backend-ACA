@@ -11,6 +11,7 @@ const BotSchema = Schema({
         type: String,
         required: true
     },
+    //Si el status es 1 el mensaje es del chatbot, si es 0 es del usuario
     status: {
         type: Number,
         required: true
