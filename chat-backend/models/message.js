@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+// Modelo de mensajes en la base de datos
 const MessageSchema = Schema({
 
     from: {
@@ -20,9 +21,11 @@ const MessageSchema = Schema({
     timestamps: true
 });
 
+// Método para cambiar el _id por uid
 MessageSchema.method('toJSON', function() {
     const { __v, ...object } = this.toObject();
     return object;
 });
 
+// Exportamos el modelo de mensajes
 module.exports = model('Message', MessageSchema);

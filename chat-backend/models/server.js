@@ -8,6 +8,7 @@ const cors     = require('cors');
 const Sockets  = require('./sockets');
 const { dbConnection } = require('../database/config');
 
+// Clase para levantar el servidor de Express
 class Server {
 
     constructor() {
@@ -62,5 +63,5 @@ class Server {
 
 }
 
-
+// Exportamos la clase Server para poder utilizarla en index.js
 module.exports = Server;
